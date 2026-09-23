@@ -1,0 +1,33 @@
+{
+  "source": "Author-trained day/night traffic-sign checkpoint; source training data is not distributed",
+  "sha256": "ee309e2b6f9a558343ef059871c708a2e5091c4e15b385764d4f95d63d163f85",
+  "model": "YOLOv12 day-night",
+  "classes": {
+    "0": "wran",
+    "1": "ban",
+    "2": "point-l",
+    "3": "point-s"
+  },
+  "vendor_source": "iMoonLab/yolov13 research fork; see THIRD_PARTY_NOTICES.md",
+  "metrics_note": "Historical CSV peak mAP50-95, not a new evaluation; split equivalence not verified.",
+  "historical_metrics": [
+    {
+      "run": "train yolov11-lga day-night",
+      "epoch": 89,
+      "mAP50": 0.64708,
+      "mAP50_95": 0.47604
+    },
+    {
+      "run": "train yolov12 day-night",
+      "epoch": 147,
+      "mAP50": 0.63324,
+      "mAP50_95": 0.47287
+    },
+    {
+      "run": "train yolov13  day-night",
+      "epoch": 152,
+      "mAP50": 0.65623,
+      "mAP50_95": 0.47291
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+.venv/
+.runtime/
+.idea/
+.pytest_cache/
+tmp/
+__pycache__/
+*.pyc
+.env
+*.log
+outputs/*
+!outputs/.gitkeep
+weights/*.pt
+!weights/traffic_best.pt
+test_images/*.jpg

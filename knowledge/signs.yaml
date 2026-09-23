@@ -1,0 +1,60 @@
+# 交通标志语义知识库（本地检索，无向量库、无额外 API）
+#
+# 用途：回答“这个标志是什么意思”这类语义问题。
+# 纪律：没有依据的类别一律留空。留空的类别由 traffic_agent/knowledge.py 判定为不可用，
+#       Agent 必须回答“知识库没有该类别依据”，不得根据外观或常识补写。
+#
+# 依据来源：项目自有的标注说明文档《labels instruction.docx》（团队内部版本，非公开发布）。
+# 本项目**没有**采用国标条款号作为依据，因此 reference 字段如实写“项目标注说明”，
+# 不声称依据 GB 5768 等国标；对外表述时请沿用同样口径。
+#
+# 字段说明：
+#   label          原始训练标签（禁止改名，必须与 checkpoint 一致）
+#   class_name     业务短名（常量见 traffic_agent/knowledge.py）
+#   aliases        中文/同义说法，用于检索命中
+#   meaning        含义
+#   appearance     外观特征
+#   scene          典型场景
+#   confusable     易混淆提示
+#   reference      依据来源
+#
+# 数据交叉验证（2026-09-16，scripts/inspect_label_sizes.py，1500 张图）：
+#   point-l 标注框面积中位数 7636 px²，明显大于 point-s 的 2703、ban 的 2052、wran 的 1845，
+#   与标注说明中“class 2 指路标志（大牌面、含地名与距离）/ class 3 指示标志（蓝绿底圆形或方形）”一致。
+#
+# 历史说明：早期标注方案包含第 5 类“白色辅助标志”（traffic.yaml 中的 aux），
+#   现行夜间研究已不再使用该类；本知识库只覆盖当前 checkpoint 的四类。
+
+classes:
+  - class_name: wran
+    label: wran
+    aliases: [警告标志, 警告, 黄底, 三角警告]
+    meaning: 警告标志，用于提醒车辆与行人注意前方危险地点。
+    appearance: 黄底、黑边、黑图案；数据集中的警告标志不限于三角形，非三角形的黄底警示牌也归入此类。
+    scene: 前方存在危险或需要注意的路段。
+    confusable: 与黄底施工、导向等其他黄色牌面需按标注说明统一处理。
+    reference: 项目标注说明 labels instruction.docx（团队内部依据，非国标）
+  - class_name: ban
+    label: ban
+    aliases: [禁止标志, 禁令标志, 禁止, 红圈]
+    meaning: 禁止标志，用于禁止或限制车辆、行人通行。
+    appearance: 白底、红圈、红斜杠、黑图案；个别标志例外。红白箭头标志在统计口径上同样计入禁止标志。
+    scene: 禁止通行、禁止转弯、禁止停车、限高等限制性路段。
+    confusable: 指示标志中的圆形蓝底牌不是禁止标志；禁止标志出现在指路牌或辅助牌上时应单独计数。
+    reference: 项目标注说明 labels instruction.docx（团队内部依据，非国标）
+  - class_name: point-l
+    label: point-l
+    aliases: [指路标志, 方向标志, 地名, 距离, 出口编号, 指路]
+    meaning: 指路（方向）标志，用于传递道路方向、地点、距离信息。
+    appearance: 蓝底白字白图案为主，高速公路与城市快速路为绿底，旅游景区为棕底；牌面较大。
+    scene: 交叉路口预告、地名与道路指示、出口编号等路段。
+    confusable: 与指示标志（point-s）区分的关键是牌面是否含地名、方向箭头、距离、道路信息。
+    reference: 项目标注说明 labels instruction.docx（团队内部依据，非国标）
+  - class_name: point-s
+    label: point-s
+    aliases: [指示标志, 指示, 蓝底, 绿底, 专用道]
+    meaning: 指示标志，用于指示车辆与行人按规定方向或方式通行。
+    appearance: 蓝底白图案白字或绿底，形状含圆形、矩形、方形；牌面尺寸较小。
+    scene: 直行、转弯、车道、步行、专用车道等通行指示。
+    confusable: 不含地名、距离、方向箭头等道路信息的蓝底牌归入此类；与 point-l 的判定依据是牌面信息类型而非颜色。
+    reference: 项目标注说明 labels instruction.docx（团队内部依据，非国标）
