@@ -20,7 +20,6 @@ py -3.11 -m venv .venv
 ## 本机启动
 
 ```powershell
-cd D:\traffic-vision-agent
 .\.venv\Scripts\python.exe app.py
 ```
 
@@ -42,15 +41,12 @@ $env:NO_PROXY = '127.0.0.1,localhost'; .\.venv\Scripts\python.exe app.py
 命令行及测试：
 
 ```powershell
-.\.venv\Scripts\python.exe main.py
+.\.venv\Scripts\python.exe main.py --image .\your-road-image.jpg
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
-.\.venv\Scripts\python.exe scripts\verify_page.py            # 真实权重 + 页面 HTTP 自检
-.\.venv\Scripts\python.exe scripts\verify_page.py --live-llm  # 追加一次真实 DeepSeek 问答
 .\.venv\Scripts\python.exe scripts\verify_knowledge.py        # 知识库检索框架（离线）
-.\.venv\Scripts\python.exe scripts\verify_context_compression.py  # 真实 API 8 轮压缩联调
 ```
 
-命令行产生 `outputs/result.json` 与随机命名的标注图片。测试使用受控检测器及模拟 LLM，不消耗 API；真实图像与真实 API 验证单独记录于 `docs/validation.md`，报告在 `outputs/`。
+命令行产生 `outputs/result.json` 与随机命名的标注图片。单元测试使用受控检测器及模拟 LLM，不消耗 API；`verify_page.py` 等真实图像验收脚本需要本机原始样例，`--live-llm` 还会产生 API 用量。历史验证记录见 `docs/validation.md`，公开的方向评测摘要见 `reports/direction-v3-summary.json`。
 
 ## 模型选择与类别
 
@@ -79,7 +75,7 @@ $env:NO_PROXY = '127.0.0.1,localhost'; .\.venv\Scripts\python.exe app.py
 
 历史说明：早期标注方案还有第 5 类“白色辅助标志”（`traffic.yaml` 里的 `aux`）；现行夜间研究已不再使用，本项目的 checkpoint 与知识库都只覆盖上述四类。
 
-没有限速值识别、OCR、遮挡分析或安全决策能力。文档中的五分类指早期标注方案，不代表本 checkpoint。
+没有限速值识别、遮挡分析或安全决策能力。OCR 是下文介绍的独立试验模块；文档中的五分类指早期标注方案，不代表本 checkpoint。
 
 该 checkpoint 来源于研究 fork。`vendor/ultralytics` 固定了本机可用的原始实现，保留 AGPL-3.0 许可证；不能假设同版本号的 PyPI 包具有相同结构。应用启动优先导入 vendor。未修改外部科研仓库。
 
@@ -161,12 +157,10 @@ OCR 文字会进一步分级，供界面与模型区分“对驾驶员的要求�
 当前支持部分独立分行布局和一箭头对应多个地名；第三轮加入保守的透视校正、OCR 框边缘重读与带 YOLO 证据的整牌边界恢复。35 张开发性质道路原图的 31 条可判定关系中，输出 9 条且均与当前近似标注一致，覆盖 29.0%；26 块负牌没有错误方向。但新增 10 张额外验证图的 5 条关系全部漏掉，**不能声称通过冻结验收**。新增 16 张原图可视标注（含 6 张夜间）和排除隐藏增强图的 v4 候选集已经保存；标注未经独立人审，100 个不同实体与 30/70 冻结划分尚未完成。详见 [第三轮改进与结果](docs/direction_upgrade_v3.md)；[第二轮](docs/direction_upgrade_v2.md)与[第一轮失败记录](docs/direction_progress_20260922.md)保留追溯。
 
 ```powershell
-.\.venv\Scripts\python.exe scripts\read_directions.py --image D:\Private-dataset-master\val\images\08839.jpg --out outputs\direction_demo\08839
-.\.venv\Scripts\python.exe scripts\verify_directions.py --gold outputs\direction_annotations_v1\gold.development.json --out outputs\direction_e2e_newrun
-.\.venv\Scripts\python.exe scripts\evaluate_directions.py --gold outputs\direction_annotations_v1\gold.development.json --predictions outputs\direction_e2e_newrun\predictions.json --output outputs\direction_e2e_newrun\metrics.json
+.\.venv\Scripts\python.exe scripts\read_directions.py --image .\your-road-image.jpg --out outputs\direction_demo
 ```
 
-原图运行器不接受人工检测框。纯组件单元测试和裁剪诊断用于定位问题，不能替代原图评测。评测统计漏检、重复输出、负样本方向误报，并在没有输出关系时把准确率记为 `null`，不会记成 100%。
+原图运行器不接受人工检测框。纯组件单元测试和裁剪诊断用于定位问题，不能替代原图评测。完整批量评测脚本需要未公开的道路图片和标注；评测统计漏检、重复输出、负样本方向误报，并在没有输出关系时把准确率记为 `null`，不会记成 100%。
 
 ## 结构与工程边界
 
@@ -194,7 +188,7 @@ OCR 文字会进一步分级，供界面与模型区分“对驾驶员的要求�
 
 ## 环境复现
 
-本机 `.venv` 使用 `D:\anaconda3\envs\pp\python.exe` 的 system-site-packages 复用已有 PyTorch 2.3.0，并在项目虚拟环境安装应用依赖。因此它不是可直接拷走的独立环境。其他机器请用 Python 3.11 建立干净虚拟环境后安装 `requirements.txt`，保留 vendor 与权重文件。干净环境安装尚需另外验证。
+原开发机 `.venv` 使用 system-site-packages 复用已有 PyTorch 2.3.0，并在项目虚拟环境安装应用依赖。因此它不是可直接拷走的独立环境。其他机器请用 Python 3.11 建立干净虚拟环境后安装 `requirements.txt`，保留 vendor 与权重文件。干净环境安装尚需另外验证。
 
 项目与内置研究代码的许可见 [LICENSE](LICENSE) 和 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
 
