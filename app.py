@@ -3,6 +3,7 @@ import gradio as gr
 from traffic_agent.agent import ask, context_view, new_state
 from traffic_agent.detector import TrafficSignDetector
 from traffic_agent.knowledge import inventory
+from traffic_agent import rag
 from traffic_agent.direction_reader import read_directions, draw_evidence, summarize_directions
 import uuid
 
@@ -55,6 +56,20 @@ def build_app(detector=None):
         # running callback, which must discard its now-stale result.
         direction_state['revision'] += 1
         return '', None, {}, direction_state
+
+    def answer_public_knowledge(question, mode):
+        try:
+            result = rag.answer(question, mode)
+            sources = '\n'.join(
+                f"- [{hit['id']}](https://github.com/YetLn/traffic-vision-agent/blob/main/"
+                f"{hit['source']}#L{hit['line']}) {hit['title']}"
+                for hit in result['hits'])
+            return result['answer'] + ('\n\n检索来源：\n' + sources if sources else ''), result
+        except ValueError as exc:
+            raise gr.Error(str(exc)) from None
+        except Exception as exc:
+            print(f'知识问答失败：{type(exc).__name__}', flush=True)
+            raise gr.Error('知识问答失败，请检查本地资料或 API 配置。') from None
 
     with gr.Blocks(title='Traffic Vision Agent', theme=gr.themes.Soft(primary_hue='teal')) as demo:
         gr.Markdown('# Traffic Vision Agent\n### 交通场景视觉查询 · 夜间模型演示\n选择图片，查询类别、数量与置信度，再生成检测框。')
@@ -115,6 +130,21 @@ def build_app(detector=None):
                 component.change(invalidate_directions, [direction_state],
                                  outputs=[direction_summary, direction_image, direction_json, direction_state],
                                  queue=False)
+        with gr.Accordion('公开项目资料问答 · RAG 第一阶段', open=False):
+            gr.Markdown('只检索仓库中的类别说明、功能边界和方向评测记录，不读取当前图片。'
+                        '离线模式返回原文摘录；选择 DeepSeek 时会把问题及命中的公开段落发送给 API，'
+                        '并要求回答标注来源。当前是关键词检索，不是向量检索。')
+            knowledge_question = gr.Textbox(label='询问项目资料',
+                                            placeholder='为什么不能把未检出说成图片里没有标志？')
+            rag_mode = gr.Radio(['离线证据', 'DeepSeek 引用回答'], value='离线证据',
+                                label='知识问答模式')
+            rag_button = gr.Button('检索并回答')
+            rag_answer = gr.Markdown()
+            rag_evidence = gr.JSON(label='检索段落、来源与分数', open=False)
+            rag_button.click(answer_public_knowledge, [knowledge_question, rag_mode],
+                             [rag_answer, rag_evidence], api_name='ask_knowledge')
+            knowledge_question.submit(answer_public_knowledge, [knowledge_question, rag_mode],
+                                      [rag_answer, rag_evidence])
         gr.Markdown('离线模式为规则路由基线；DeepSeek 模式提供 LLM 工具调用。'
                     '检测结果不能用于行车安全决策；标志含义只有在知识库收录依据后才会回答。')
     return demo
