@@ -1,0 +1,1475 @@
+{
+  "source_page": "https://jtgl.beijing.gov.cn/jgj/lszt/659722/10860935/",
+  "standard_info_url": "https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=15B1FC09EE1AE92F1A9EC97BA3C9E451&refer=outter",
+  "indexed_on": "2026-09-26",
+  "note": "网页图示索引；22 个不同名称有项目转述的初步释义，尚未与数据集图像匹配或逐项核对国标条款。source_index_only 不可用于回答；research_paraphrase_only 也不得当作视觉识别结果。",
+  "entries": [
+    {
+      "id": "ban-001",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "停车让行",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021414424942537.png",
+      "meaning_summary": "进入路口前须完全停车，确认安全后再通行。",
+      "review_state": "research_paraphrase_only"
+    },
+    {
+      "id": "ban-002",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "减速让行",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417144265141.png",
+      "meaning_summary": "慢行，必要时停车，让有优先通行权的车辆先行。",
+      "review_state": "research_paraphrase_only"
+    },
+    {
+      "id": "ban-003",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "会车让行",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417150736485.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-004",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止通行",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417152794612.png",
+      "meaning_summary": "禁止车辆和行人通行。",
+      "review_state": "research_paraphrase_only"
+    },
+    {
+      "id": "ban-005",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止驶入",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417154860601.png",
+      "meaning_summary": "禁止车辆从这一方向驶入。",
+      "review_state": "research_paraphrase_only"
+    },
+    {
+      "id": "ban-006",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止机动车驶入",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417160670559.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-007",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止大型载客汽车驶入",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417162433082.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-008",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止小型载客汽车驶入",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417183667139.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-009",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止载货汽车驶入",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417185422356.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-010",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止挂车、半挂车驶入",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417191411701.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-011",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止拖拉机驶入",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417193862632.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-012",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止三轮汽车、低速货车驶入",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417204730987.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-013",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止摩托车驶入",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417211530030.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-014",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止非机动车进入",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417225160504.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-015",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止电动自行车进入",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417230749582.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-016",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止畜力车进入",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417232625179.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-017",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止三轮车驶入",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417235495713.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-018",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止人力客运三轮车进入",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417240920284.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-019",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止人力货运三轮车进入",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417243227648.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-020",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止人力车进入",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417245622945.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-021",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止行人进入",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417251767968.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-022",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止某两种车辆驶入",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417253295622.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-023",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止向左转弯",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417270798159.png",
+      "meaning_summary": "前方路口禁止左转。",
+      "review_state": "research_paraphrase_only"
+    },
+    {
+      "id": "ban-024",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止向右转弯",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417272375490.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-025",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止直行",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417352475049.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-026",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止向左和向右转弯",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417354031168.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-027",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止直行和向左转弯",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417355532417.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-028",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止直行和向右转弯",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417362884620.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-029",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止掉头",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417364955640.png",
+      "meaning_summary": "禁止机动车掉头。",
+      "review_state": "research_paraphrase_only"
+    },
+    {
+      "id": "ban-030",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止超车",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417370774593.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-031",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "解除禁止超车",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417372488477.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-032",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止车辆停放",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417374911248.png",
+      "meaning_summary": "适用范围内禁止车辆停放。",
+      "review_state": "research_paraphrase_only"
+    },
+    {
+      "id": "ban-033",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止车辆长时停放",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417381147386.png",
+      "meaning_summary": "适用范围内禁止车辆长时间停放。",
+      "review_state": "research_paraphrase_only"
+    },
+    {
+      "id": "ban-034",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止鸣喇叭",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417383011264.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-035",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "限制宽度",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417384875197.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-036",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "限制高度",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417391174501.png",
+      "meaning_summary": "超过牌面高度数值的车辆不得通行；具体值须从图像另行识别。",
+      "review_state": "research_paraphrase_only"
+    },
+    {
+      "id": "ban-037",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "限制质量",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417392610812.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-038",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "限制轴重",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417394414558.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-039",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "限制速度",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417400094789.png",
+      "meaning_summary": "行驶速度不得超过牌面数值；具体值须从图像另行识别。",
+      "review_state": "research_paraphrase_only"
+    },
+    {
+      "id": "ban-040",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "解除限制速度",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417401968100.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-041",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "停车检查",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417425114726.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-042",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "禁止危险物品运输车辆驶入",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417430625992.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-043",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "区域限制速度",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417432158910.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-044",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "区域限制速度解除",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417433818722.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-045",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "区域禁止车辆长时停放",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417435485831.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-046",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "区域禁止车辆长时停放解除",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417441231234.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-047",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "区域禁止车辆停放",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417442816479.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "ban-048",
+      "dataset_class_id": 1,
+      "dataset_class_name": "ban",
+      "name": "区域禁止车辆停放解除",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417455450404.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-001",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "直行标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022015582372587.png",
+      "meaning_summary": "车辆按标志要求直行。",
+      "review_state": "research_paraphrase_only"
+    },
+    {
+      "id": "point-s-002",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "向左转弯标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022015592438649.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-003",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "向右转弯标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022016001170626.png",
+      "meaning_summary": "车辆按标志要求右转。",
+      "review_state": "research_paraphrase_only"
+    },
+    {
+      "id": "point-s-004",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "直行和向左转弯标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022016004670036.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-005",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "直行和向右转弯标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022016012190850.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-006",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "向左和向右转弯标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022016015550055.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-007",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "分隔带左侧行驶标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022016022985248.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-008",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "分隔带右侧行驶标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022016025967342.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-009",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "允许掉头标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022017374194272.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-010",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "环岛行驶标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022016033456015.png",
+      "meaning_summary": "车辆按图示方向环行。",
+      "review_state": "research_paraphrase_only"
+    },
+    {
+      "id": "point-s-011",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "鸣喇叭标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022016102394840.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-012",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "开车灯标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022016105292425.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-013",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "最低限速标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022016134189610.png",
+      "meaning_summary": "指明机动车的最低速度限制；具体值须从图像另行识别。",
+      "review_state": "research_paraphrase_only"
+    },
+    {
+      "id": "point-s-014",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "会车先行标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022016141768409.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-015",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "单行路（直行）标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022016082576233.png",
+      "meaning_summary": "该道路为单向通行，应按标示方向行驶。",
+      "review_state": "research_paraphrase_only"
+    },
+    {
+      "id": "point-s-016",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "单行路（向左或向右）标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022016083880340.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-017",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "人行横道标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022016150075020.png",
+      "meaning_summary": "指明该处有人行横道。",
+      "review_state": "research_paraphrase_only"
+    },
+    {
+      "id": "point-s-018",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "右转车道标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022016153126989.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-019",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "左转车道标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022016155632932.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-020",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "直行车道标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022016162557632.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-021",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "直行和右转合用车道标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022016171932344.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-022",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "直行和左转合用车道标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022117203627749.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-023",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "掉头车道标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022016285581431.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-024",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "掉头和左转合用车道标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022016292523014.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-025",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "组合设置的分向行驶车道标志示例",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022016295686639.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-026",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "有轨电车专用车道标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022017310023718.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-027",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "多乘员车辆（HOV）专用车道标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022017313152630.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-028",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "小型客车车道标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022017262567659.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-029",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "公交专用车道标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022017270196831.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-030",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "快速公交系统（BRT）专用车道标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022017300546187.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-031",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "非机动车车道标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022017324640225.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-032",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "电动自行车车道标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022017341752876.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-033",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "不同的专用车道标志并设",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022017351875379.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-034",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "非机动车与行人通行标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022017350063749.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-035",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "硬路肩允许行驶标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022017383591311.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-036",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "行人标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022017344342142.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-037",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "机动车行驶标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022016303877960.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-038",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "电动自行车行驶标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022017331493658.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-039",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "非机动车行驶标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022017320263142.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-040",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "非机动车推行标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022017353549844.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-041",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "靠右侧车道行驶标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022017355146558.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-042",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "停车位标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022117193873481.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "point-s-043",
+      "dataset_class_id": 3,
+      "dataset_class_name": "point-s",
+      "name": "货车通行标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022017385462653.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-001",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "交叉路口标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022810234230673.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-002",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "交叉路口标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022810235189214.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-003",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "交叉路口标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022810240354244.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-004",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "交叉路口标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022810241261056.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-005",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "交叉路口标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022810242110268.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-006",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "交叉路口标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022810242810088.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-007",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "交叉路口标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022810243717131.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-008",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "交叉路口标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022810244451849.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-009",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "交叉路口标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022810245330576.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-010",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "交叉路口标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022810250165396.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-011",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "交叉路口标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022810251666521.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-012",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "向左急弯路标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022811530254167.png",
+      "meaning_summary": "提醒前方道路向左急弯。",
+      "review_state": "research_paraphrase_only"
+    },
+    {
+      "id": "wran-013",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "向右急弯路标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022811532839356.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-014",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "反向弯路标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022811535486745.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-015",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "反向弯路标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022811540710082.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-016",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "连续弯路标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022811552420161.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-017",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "连续弯路标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022811553985213.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-018",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "上陡坡标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022811564047885.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-019",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "下陡坡标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022811565480176.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-020",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "连续下坡标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022811582628240.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-021",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "两侧变窄标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814262753140.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-022",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "右侧变窄标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814264242765.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-023",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "左侧变窄标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814273027701.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-024",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "窄桥标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814282245716.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-025",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "双向交通标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814284479207.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-026",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意行人标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814290326518.png",
+      "meaning_summary": "提醒前方可能有行人，注意观察。",
+      "review_state": "research_paraphrase_only"
+    },
+    {
+      "id": "wran-027",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意儿童标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814292071555.png",
+      "meaning_summary": "提醒前方可能有儿童，注意观察。",
+      "review_state": "research_paraphrase_only"
+    },
+    {
+      "id": "wran-028",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意残疾人标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814293979378.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-029",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意非机动车标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814295552546.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-030",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意电动自行车标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814301249215.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-031",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意牲畜标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814302699621.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-032",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意野生动物标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814304442205.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-033",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意信号灯标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814310129577.png",
+      "meaning_summary": "提醒前方设有交通信号灯。",
+      "review_state": "research_paraphrase_only"
+    },
+    {
+      "id": "wran-034",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意（左侧）落石标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814325941068.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-035",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意（右侧）落石标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814331140380.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-036",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意横风标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814351098160.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-037",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "易滑标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814352537277.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-038",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "左侧傍山险路标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814354741337.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-039",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "右侧傍山险路标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814355888194.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-040",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "堤坝路标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814381914756.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-041",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "堤坝路标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814383080629.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-042",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "村庄标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814390940794.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-043",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "隧道标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814392469191.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-044",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "驼峰桥标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814393939006.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-045",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "路面不平标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814395324756.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-046",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "减速丘标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814401391545.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-047",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "过水路面（或漫水桥）标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814403331487.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-048",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "有人看守铁路道口标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814404863254.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-049",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "无人看守铁路道口标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814410661217.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-050",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "事故易发路段标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814412252943.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-051",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "左右绕行标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814413865289.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-052",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "左侧绕行标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814415252665.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-053",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "右侧绕行标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814420662712.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-054",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意危险标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814422047118.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-055",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "施工标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814423713163.png",
+      "meaning_summary": "提醒前方道路施工。",
+      "review_state": "research_paraphrase_only"
+    },
+    {
+      "id": "wran-056",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "交通事故管理标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814425485454.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-057",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "建议速度标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814440777271.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-058",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意潮汐车道标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814442371574.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-059",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意保持车距标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814443849057.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-060",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意合流标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814450861537.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-061",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意合流标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814455926131.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-062",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意车道数变少标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814484557342.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-063",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意车道数变少标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814485421791.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-064",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "避险车道标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814494037766.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-065",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "避险车道标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814495024171.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-066",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意路面结冰标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814505129405.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-067",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意雨（雪）天标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814511377785.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-068",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意雾天标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814512781412.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-069",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意不利气象条件标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814514172508.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-070",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意前方车辆排队标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814515896699.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-071",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "线形诱导标",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814521396852.png",
+      "meaning_summary": null,
+      "review_state": "source_index_only"
+    },
+    {
+      "id": "wran-072",
+      "dataset_class_id": 0,
+      "dataset_class_name": "wran",
+      "name": "注意积水标志",
+      "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023022814540412383.png",
+      "meaning_summary": "提醒前方路段可能积水。",
+      "review_state": "research_paraphrase_only"
+    }
+  ]
+}
