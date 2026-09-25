@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 from PIL import Image
 
-from traffic_agent.small_sign_reader import _features, match_crop
+from traffic_agent.small_sign_reader import _features, _number, _numeric_override, match_crop
 
 
 def blue_arrow(direction):
@@ -62,11 +62,36 @@ class SmallSignReaderTests(unittest.TestCase):
                   'meaning_summary': '不得超过牌面数值。',
                   'source_image_url': 'https://example.test/speed'},
                  _features(image))]
-        line = {'text': '40', 'score': 0.99}
+        line = {'text': '40', 'score': 0.99, 'center': [64, 64]}
         with patch('traffic_agent.small_sign_reader._ocr_lines', return_value=[line]):
             result = match_crop(crop, 1, refs)
         self.assertTrue(result['accepted'])
         self.assertEqual(result['number']['value'], 40)
+
+    def test_speed_number_uses_sharpened_ocr_only_after_raw_miss(self):
+        crop = Image.new('RGB', (128, 128), 'white')
+        with patch('traffic_agent.small_sign_reader.read_text', side_effect=[
+            {'lines': []}, {'lines': [{'text': '60', 'score': 0.99}]}
+        ]) as ocr:
+            number = _number(crop, '限制速度')
+        self.assertEqual(number['value'], 60)
+        self.assertEqual(ocr.call_count, 2)
+        self.assertIsNot(ocr.call_args_list[1].args[0], crop)
+
+    def test_speed_override_rejects_off_center_or_unit_bearing_text(self):
+        image = np.full((128, 128, 3), 255, np.uint8)
+        cv2.circle(image, (64, 64), 53, (220, 20, 20), 14)
+        crop = Image.fromarray(image)
+        refs = [({'id': 'speed', 'name': '限制速度', 'dataset_class_id': 1,
+                  'meaning_summary': '不得超过牌面数值。',
+                  'source_image_url': 'https://example.test/speed'},
+                 _features(image))]
+        for text, center in (('40', [5, 5]), ('4.5m', [64, 64])):
+            with self.subTest(text=text, center=center), patch(
+                'traffic_agent.small_sign_reader._ocr_lines',
+                return_value=[{'text': text, 'score': 0.99, 'center': center}]
+            ):
+                self.assertIsNone(_numeric_override(crop, image, refs, 1))
 
 
 if __name__ == '__main__':

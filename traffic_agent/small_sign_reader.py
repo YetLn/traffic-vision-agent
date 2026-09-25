@@ -16,7 +16,7 @@ from pathlib import Path
 import cv2
 import numpy as np
 import requests
-from PIL import Image, ImageDraw, ImageFont, ImageOps
+from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps
 
 from .config import ROOT, RUNTIME
 from .ocr import read_text
@@ -112,20 +112,28 @@ def _references():
 
 
 def _number(crop, name):
-    try:
-        lines = read_text(crop, min_score=0.7)['lines']
-    except (RuntimeError, ValueError):
-        return None
-    for line in lines:
-        value = line['text'].replace('O', '0').replace('o', '0')
-        pattern = r'(?<!\d)(\d{1,3})(?!\d)' if name != '限制高度' else r'(?<!\d)(\d{1,2}(?:\.\d)?)(?!\d)'
-        match = re.search(pattern, value)
-        if not match:
+    # A mild sharpening pass rescued a clear speed-60 crop whose raw OCR was empty.
+    # Keep it behind the template and color checks in match_crop.
+    variants = [crop]
+    if name == '限制速度':
+        variants.append(crop.filter(ImageFilter.UnsharpMask(radius=2, percent=180)))
+    for index, variant in enumerate(variants):
+        try:
+            lines = read_text(variant, min_score=0.7)['lines']
+        except (RuntimeError, ValueError):
             continue
-        parsed = float(match.group(1)) if name == '限制高度' else int(match.group(1))
-        if 0 < parsed <= (10 if name == '限制高度' else 160):
-            return {'value': parsed, 'unit': 'm' if name == '限制高度' else 'km/h',
-                    'text': line['text'], 'ocr_score': line['score']}
+        for line in lines:
+            if index and line['score'] < 0.9:
+                continue
+            value = line['text'].replace('O', '0').replace('o', '0')
+            pattern = r'(?<!\d)(\d{1,3})(?!\d)' if name != '限制高度' else r'(?<!\d)(\d{1,2}(?:\.\d)?)(?!\d)'
+            match = re.search(pattern, value)
+            if not match:
+                continue
+            parsed = float(match.group(1)) if name == '限制高度' else int(match.group(1))
+            if 0 < parsed <= (10 if name == '限制高度' else 160):
+                return {'value': parsed, 'unit': 'm' if name == '限制高度' else 'km/h',
+                        'text': line['text'], 'ocr_score': line['score']}
     return None
 
 
@@ -147,10 +155,14 @@ def _red_ring_share(rgb):
 
 
 def _numeric_override(crop, rgb, refs, class_id):
-    if class_id != 1 or _red_ring_share(rgb) < 0.35:
+    ring_share = _red_ring_share(rgb)
+    if class_id != 1 or ring_share < 0.15:
         return None
     lines = _ocr_lines(crop)
     if len(lines) != 1 or lines[0]['score'] < 0.9:
+        return None
+    center = lines[0].get('center')
+    if center is None or abs(center[0] / crop.width - 0.5) > 0.25 or abs(center[1] / crop.height - 0.5) > 0.25:
         return None
     text = lines[0]['text'].replace('O', '0').replace('o', '0')
     if not re.fullmatch(r'\d{2,3}', text):
@@ -165,7 +177,7 @@ def _numeric_override(crop, rgb, refs, class_id):
     speed_score = max(_similarity(feature, ref) for e, ref in refs if e['name'] == '限制速度')
     best_other = max((_similarity(feature, ref) for e, ref in refs
                       if e['dataset_class_id'] == 1 and e['name'] != '限制速度'), default=0.0)
-    if speed_score < 0.68 or speed_score + 0.02 < best_other:
+    if speed_score < 0.64 or speed_score + 0.02 < best_other:
         return None
     return {'accepted': True, 'name': entry['name'], 'meaning': entry['meaning_summary'],
             'catalog_id': entry['id'], 'source_page': _load_catalog()['source_page'],
@@ -173,7 +185,7 @@ def _numeric_override(crop, rgb, refs, class_id):
             'number': {'value': value, 'unit': 'km/h', 'text': lines[0]['text'],
                        'ocr_score': lines[0]['score']}, 'method': '红色圆环 + 单个清晰数字',
             'scope_note': '辅助牌与具体适用范围尚未解析',
-            'ring_share': round(_red_ring_share(rgb), 3),
+            'ring_share': round(ring_share, 3),
             'score': speed_score, 'runner_up_score': best_other,
             'margin': round(speed_score - best_other, 4)}
 
