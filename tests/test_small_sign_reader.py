@@ -86,7 +86,7 @@ class SmallSignReaderTests(unittest.TestCase):
                   'meaning_summary': '不得超过牌面数值。',
                   'source_image_url': 'https://example.test/speed'},
                  _features(image))]
-        for text, center in (('40', [5, 5]), ('4.5m', [64, 64])):
+        for text, center in (('40', [64, 53]), ('4.5m', [64, 64])):
             with self.subTest(text=text, center=center), patch(
                 'traffic_agent.small_sign_reader._ocr_lines',
                 return_value=[{'text': text, 'score': 0.99, 'center': center}]

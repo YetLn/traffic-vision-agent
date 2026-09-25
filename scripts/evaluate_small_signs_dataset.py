@@ -174,11 +174,12 @@ def _iou(a, b):
     return inter/max(area_a+area_b-inter, 1e-9)
 
 
-def evaluate(selected, detector, confidence=0.25):
+def evaluate(selected, detector, confidence=0.25, color_recovery=True):
     results = []
     for index, row in enumerate(selected, 1):
         with Image.open(row['image']) as handle:
-            report = read_small_signs(handle, detector, confidence)
+            report = read_small_signs(handle, detector, confidence,
+                                      color_recovery=color_recovery)
         gt = []
         for box in row['eligible']:
             overlap = max((_iou(box['bbox'], sign['bbox']) for sign in report['signs']
@@ -203,7 +204,8 @@ def summarize(records, selected, results):
                                                if r['source'] == source})
                                   for source in ('day', 'night')},
                'strata': dict(Counter(r['stratum'] for r in selected)),
-               'eligible_gt': {}, 'detected_boxes': {}, 'accepted_signs': {},
+               'eligible_gt': {}, 'detected_boxes': {}, 'detected_by_source': {},
+               'accepted_signs': {},
                'rejection_reasons': {}, 'accepted_names': {}}
     for source in ('day', 'night'):
         rows = [r for r in results if r['source'] == source]
@@ -215,6 +217,8 @@ def summarize(records, selected, results):
                                   'matched_iou50': sum(b['class_id'] == c and b['matched_iou50']
                                                        for b in gt)} for c in CLASSES}}
         summary['detected_boxes'][source] = len(signs)
+        summary['detected_by_source'][source] = dict(Counter(
+            s.get('detector_source', 'yolo') for s in signs))
         summary['accepted_signs'][source] = sum(s['accepted'] for s in signs)
         summary['rejection_reasons'][source] = dict(Counter(s.get('reason', '') for s in signs
                                                             if not s['accepted']))
@@ -228,6 +232,7 @@ def main():
     parser.add_argument('--per-class', type=int, default=20)
     parser.add_argument('--controls', type=int, default=10)
     parser.add_argument('--confidence', type=float, default=0.25)
+    parser.add_argument('--no-color-recovery', action='store_true')
     parser.add_argument('--seed', type=int, default=20260926)
     parser.add_argument('--day-root', type=Path, default=DAY)
     parser.add_argument('--night-root', type=Path, default=NIGHT)
@@ -243,10 +248,12 @@ def main():
     if args.dry_run:
         return
     detector = TrafficSignDetector()
-    results = evaluate(selected, detector, args.confidence)
+    results = evaluate(selected, detector, args.confidence,
+                       color_recovery=not args.no_color_recovery)
     summary = summarize(records, selected, results)
     payload = {'selection': {'per_class': args.per_class, 'controls': args.controls,
                              'seed': args.seed, 'confidence': args.confidence,
+                             'color_recovery': not args.no_color_recovery,
                              'source_splits': {'day': 'val', 'night': 'val originals only'}},
                'summary': summary, 'samples': results,
                'warning': 'No fine-grained ground truth; accepted subtype counts are coverage, not accuracy.'}

@@ -18,6 +18,7 @@ import numpy as np
 import requests
 from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps
 
+from .color_sign_proposals import color_sign_proposals
 from .config import ROOT, RUNTIME
 from .ocr import read_text
 
@@ -162,7 +163,7 @@ def _numeric_override(crop, rgb, refs, class_id):
     if len(lines) != 1 or lines[0]['score'] < 0.9:
         return None
     center = lines[0].get('center')
-    if center is None or abs(center[0] / crop.width - 0.5) > 0.25 or abs(center[1] / crop.height - 0.5) > 0.25:
+    if center is None or abs(center[0] / crop.width - 0.5) > 0.20 or abs(center[1] / crop.height - 0.5) > 0.07:
         return None
     text = lines[0]['text'].replace('O', '0').replace('o', '0')
     if not re.fullmatch(r'\d{2,3}', text):
@@ -188,6 +189,15 @@ def _numeric_override(crop, rgb, refs, class_id):
             'ring_share': round(ring_share, 3),
             'score': speed_score, 'runner_up_score': best_other,
             'margin': round(speed_score - best_other, 4)}
+
+
+def _box_iou(a, b):
+    x1, y1 = max(a[0], b[0]), max(a[1], b[1])
+    x2, y2 = min(a[2], b[2]), min(a[3], b[3])
+    intersection = max(0, x2-x1) * max(0, y2-y1)
+    area_a = (a[2]-a[0]) * (a[3]-a[1])
+    area_b = (b[2]-b[0]) * (b[3]-b[1])
+    return intersection / max(area_a + area_b - intersection, 1e-9)
 
 
 def match_crop(crop, class_id, refs=None, *, min_side=96, min_score=None, min_margin=None):
@@ -271,7 +281,7 @@ def match_crop(crop, class_id, refs=None, *, min_side=96, min_score=None, min_ma
     return result
 
 
-def read_small_signs(image, detector, confidence=0.25):
+def read_small_signs(image, detector, confidence=0.25, *, color_recovery=True):
     if image is None:
         raise ValueError('请先上传道路图片。')
     source = ImageOps.exif_transpose(image).convert('RGB')
@@ -292,11 +302,39 @@ def read_small_signs(image, detector, confidence=0.25):
         else:
             verdict = match_crop(source.crop(box), class_id, refs)
         signs.append({'sign_id': i, 'class_id': class_id, 'class_name': row['class_name'],
-                      'detection_confidence': row['confidence'], 'bbox': list(box), **verdict})
+                      'detector_source': 'yolo', 'detection_confidence': row['confidence'],
+                      'bbox': list(box), **verdict})
+    proposals = color_sign_proposals(source) if color_recovery else []
+    reviewed = 0
+    recovered = 0
+    next_sign_id = max((sign['sign_id'] for sign in signs), default=0) + 1
+    for proposal in proposals:
+        box = proposal['bbox']
+        class_id = proposal['class_id']
+        if min(box[2]-box[0], box[3]-box[1]) < 96:
+            continue
+        if any(sign['class_id'] == class_id and _box_iou(sign['bbox'], box) >= 0.5
+               for sign in signs):
+            continue
+        reviewed += 1
+        verdict = match_crop(source.crop(tuple(box)), class_id, refs)
+        if not verdict['accepted']:
+            continue
+        if any(sign['accepted'] and _box_iou(sign['bbox'], box) >= 0.5 for sign in signs):
+            continue
+        signs.append({'sign_id': next_sign_id, 'class_id': class_id,
+                      'class_name': TARGET_CLASSES[class_id],
+                      'detector_source': 'color_shape', 'detection_confidence': None,
+                      'proposal_color_fraction': proposal['color_fraction'],
+                      'bbox': list(box), **verdict})
+        recovered += 1
+        next_sign_id += 1
     return {'signs': signs, 'accepted': sum(s['accepted'] for s in signs),
             'abstained': sum(not s['accepted'] for s in signs),
+            'color_proposals': len(proposals), 'color_proposals_reviewed': reviewed,
+            'color_proposals_accepted': recovered,
             'references_loaded': len(refs), 'catalog_source': catalog['source_page'],
-            'method': '近方形清晰牌面与官方图示的保守视觉匹配；试验版，未经冻结评测'}
+            'method': 'YOLO 检测 + 颜色/形状候选补充，经图示和 OCR 复核；试验版，未经冻结评测'}
 
 
 def draw_small_sign_evidence(image, report, output_path):
@@ -306,7 +344,8 @@ def draw_small_sign_evidence(image, report, output_path):
     for sign in report['signs']:
         color = '#17a34a' if sign['accepted'] else '#f59e0b'
         draw.rectangle(sign['bbox'], outline=color, width=max(3, canvas.width // 500))
-        label = f"#{sign['sign_id']} {'MATCH' if sign['accepted'] else 'UNSURE'}"
+        origin = 'CV' if sign.get('detector_source') == 'color_shape' else 'Y'
+        label = f"#{sign['sign_id']} {origin} {'MATCH' if sign['accepted'] else 'UNSURE'}"
         x, y = sign['bbox'][:2]
         draw.text((x, max(0, y - 20)), label, fill=color, font=font,
                   stroke_width=2, stroke_fill='black')
@@ -318,15 +357,21 @@ def draw_small_sign_evidence(image, report, output_path):
 
 def summarize_small_signs(report):
     if not report['signs']:
-        return '未检测到 0/1/3 类小标志；这不代表图片里不存在。'
+        reviewed = report.get('color_proposals_reviewed', 0)
+        return (f'未检测到可解读的 0/1/3 类小标志；颜色/形状候选复核 {reviewed} 个，'
+                '均未通过证据检查。这不代表图片里不存在标志。')
     lines = [f"检测到 {len(report['signs'])} 个 0/1/3 类框；具体含义通过 {report['accepted']} 个，拒答 {report['abstained']} 个。"]
+    if report.get('color_proposals_reviewed'):
+        lines.append(f"另复核颜色/形状候选 {report['color_proposals_reviewed']} 个，"
+                     f"新增通过 {report['color_proposals_accepted']} 个；未通过者不作为具体标志输出。")
     for sign in report['signs']:
         if sign['accepted']:
             suffix = ''
             if sign.get('number'):
                 number = sign['number']
                 suffix = f"牌面数字 {number['value']} {number['unit']}（OCR {number['ocr_score']:.2f}）。"
-            lines.append(f"- #{sign['sign_id']} **{sign['name']}**：{sign['meaning']} {suffix} "
+            source = '颜色/形状候选' if sign.get('detector_source') == 'color_shape' else 'YOLO'
+            lines.append(f"- #{sign['sign_id']}（{source}） **{sign['name']}**：{sign['meaning']} {suffix} "
                          f"[图解来源]({sign['source_page']})。{sign['scope_note']}。")
         else:
             lines.append(f"- #{sign['sign_id']} 不解读：{sign['reason']}。")
