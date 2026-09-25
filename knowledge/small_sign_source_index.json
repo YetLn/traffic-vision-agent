@@ -352,7 +352,7 @@
       "dataset_class_name": "ban",
       "name": "限制速度",
       "source_image_url": "https://jtgl.beijing.gov.cn/jgj/resource/cms/2023/02/2023021417400094789.png",
-      "meaning_summary": "行驶速度不得超过牌面数值；具体值须从图像另行识别。",
+      "meaning_summary": "机动车行驶速度不得超过该牌面所示数值。",
       "review_state": "research_paraphrase_only"
     },
     {

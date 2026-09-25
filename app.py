@@ -5,6 +5,8 @@ from traffic_agent.detector import TrafficSignDetector
 from traffic_agent.knowledge import inventory
 from traffic_agent import rag
 from traffic_agent.direction_reader import read_directions, draw_evidence, summarize_directions
+from traffic_agent.small_sign_reader import (read_small_signs, draw_small_sign_evidence,
+                                             summarize_small_signs)
 import uuid
 
 
@@ -71,6 +73,18 @@ def build_app(detector=None):
             print(f'知识问答失败：{type(exc).__name__}', flush=True)
             raise gr.Error('知识问答失败，请检查本地资料或 API 配置。') from None
 
+    def parse_small_signs(image, threshold):
+        try:
+            report = read_small_signs(image, detector, threshold)
+            path = OUTPUTS / 'small_sign_ui' / f'{uuid.uuid4().hex}.jpg'
+            draw_small_sign_evidence(image, report, path)
+            return summarize_small_signs(report), str(path), report
+        except ValueError as exc:
+            raise gr.Error(str(exc)) from None
+        except Exception as exc:
+            print(f'小标志解读失败：{type(exc).__name__}', flush=True)
+            raise gr.Error('小标志解读失败，请检查本地检测和图示缓存。') from None
+
     with gr.Blocks(title='Traffic Vision Agent', theme=gr.themes.Soft(primary_hue='teal')) as demo:
         gr.Markdown('# Traffic Vision Agent\n### 交通场景视觉查询 · 夜间模型演示\n选择图片，查询类别、数量与置信度，再生成检测框。')
         state = gr.State(new_state())
@@ -130,6 +144,21 @@ def build_app(detector=None):
                 component.change(invalidate_directions, [direction_state],
                                  outputs=[direction_summary, direction_image, direction_json, direction_state],
                                  queue=False)
+        with gr.Accordion('清晰小标志含义匹配 · 无需补标注的试验版', open=False):
+            gr.Markdown('使用上方道路原图。先检测 0/1/3 类，再从原图裁出牌面，与北京市交管局图解中已有初步释义的图示比较。'
+                        '仅对尺寸、清晰度、颜色、相似度及候选差距均达门槛的标志给出解释；'
+                        '限速牌还须读清数字。其他情况显示拒答原因。绿色框为匹配通过，橙色框为拒答。'
+                        '图示仅缓存在本机，匹配和 OCR 均在本机执行。该试验尚无人工标注的独立准确率。')
+            small_button = gr.Button('尝试解读小标志')
+            small_summary = gr.Markdown()
+            small_image = gr.Image(label='小标志证据（原图坐标）', height=500)
+            small_json = gr.JSON(label='候选、匹配分数、来源和拒答原因', open=False)
+            small_button.click(parse_small_signs, [image, threshold],
+                               [small_summary, small_image, small_json],
+                               concurrency_limit=1, api_name='read_small_signs')
+            for component in (image, threshold):
+                component.change(lambda: ('', None, {}),
+                                 outputs=[small_summary, small_image, small_json], queue=False)
         with gr.Accordion('公开项目资料问答 · RAG 第一阶段', open=False):
             gr.Markdown('只检索仓库中的类别说明、功能边界和方向评测记录，不读取当前图片。'
                         '离线模式返回原文摘录；选择 DeepSeek 时会把问题及命中的公开段落发送给 API，'
