@@ -1,0 +1,110 @@
+{
+  "selection": {
+    "per_class": 20,
+    "controls": 10,
+    "seed": 20260926,
+    "confidence": 0.25,
+    "source_splits": {
+      "day": "val",
+      "night": "val originals only"
+    }
+  },
+  "summary": {
+    "inventory_images": {
+      "day": 1737,
+      "night": 188
+    },
+    "sampled_images": {
+      "day": 70,
+      "night": 53
+    },
+    "sampled_groups": {
+      "day": 70,
+      "night": 4
+    },
+    "strata": {
+      "day_0": 20,
+      "day_1": 20,
+      "day_3": 20,
+      "day_small_control": 10,
+      "night_0": 4,
+      "night_1": 19,
+      "night_3": 20,
+      "night_small_control": 10
+    },
+    "eligible_gt": {
+      "day": {
+        "total": 75,
+        "matched_iou50": 27,
+        "by_class": {
+          "0": {
+            "total": 22,
+            "matched_iou50": 8
+          },
+          "1": {
+            "total": 29,
+            "matched_iou50": 13
+          },
+          "3": {
+            "total": 24,
+            "matched_iou50": 6
+          }
+        }
+      },
+      "night": {
+        "total": 67,
+        "matched_iou50": 51,
+        "by_class": {
+          "0": {
+            "total": 5,
+            "matched_iou50": 2
+          },
+          "1": {
+            "total": 28,
+            "matched_iou50": 25
+          },
+          "3": {
+            "total": 34,
+            "matched_iou50": 24
+          }
+        }
+      }
+    },
+    "detected_boxes": {
+      "day": 85,
+      "night": 129
+    },
+    "accepted_signs": {
+      "day": 1,
+      "night": 7
+    },
+    "rejection_reasons": {
+      "day": {
+        "与官方图示不够相似，或两个候选难以区分": 21,
+        "牌面不是清晰独立的近方形小标志": 2,
+        "牌面短边小于 96 像素": 48,
+        "颜色与该标志大类不一致或夜间难以分辨": 12,
+        "牌型可能匹配，但关键数值未可靠读出": 1
+      },
+      "night": {
+        "与官方图示不够相似，或两个候选难以区分": 43,
+        "牌面短边小于 96 像素": 62,
+        "牌面模糊或对比度不足": 8,
+        "颜色与该标志大类不一致或夜间难以分辨": 6,
+        "牌面不是清晰独立的近方形小标志": 3
+      }
+    },
+    "accepted_names": {
+      "day": {
+        "限制速度": 1
+      },
+      "night": {
+        "限制速度": 4,
+        "减速让行": 1,
+        "停车让行": 1,
+        "向右转弯标志": 1
+      }
+    }
+  },
+  "warning": "No fine-grained ground truth; accepted subtype counts are coverage, not accuracy."
+}
