@@ -21,6 +21,7 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps
 from .color_sign_proposals import color_sign_proposals
 from .config import ROOT, RUNTIME
 from .ocr import read_text
+from .pedestrian_shape import pedestrian_evidence
 
 CATALOG = ROOT / 'knowledge' / 'small_sign_source_index.json'
 CACHE = RUNTIME / 'small_sign_refs'
@@ -225,6 +226,22 @@ def match_crop(crop, class_id, refs=None, *, min_side=96, min_score=None, min_ma
     if (numeric := _numeric_override(crop, rgb, refs, class_id)) is not None:
         numeric.update(sharpness=round(blur, 1), color_share=round(color, 3))
         return numeric
+    if class_id == 3:
+        crossing = next((entry for entry, _ in refs
+                         if entry['id'] == 'point-s-017'), None)
+        if crossing is not None:
+            evidence = pedestrian_evidence(crop, CACHE / (crossing['id'] + '.png'))
+            if evidence['accepted']:
+                return {'accepted': True, 'name': crossing['name'],
+                        'meaning': crossing['meaning_summary'],
+                        'catalog_id': crossing['id'],
+                        'source_page': _load_catalog()['source_page'],
+                        'source_image_url': crossing['source_image_url'],
+                        'number': None,
+                        'method': '蓝底白三角 + 黑色行人/横道图案',
+                        'scope_note': '辅助牌与具体适用范围尚未解析',
+                        'sharpness': round(blur, 1),
+                        'color_share': round(color, 3), **evidence}
     feature = _features(rgb)
     # Collapse alternate drawings of the same named sign before runner-up comparison.
     scores = {}
@@ -242,12 +259,15 @@ def match_crop(crop, class_id, refs=None, *, min_side=96, min_score=None, min_ma
     name, score = ordered[0]
     runner_up = ordered[1][1] if len(ordered) > 1 else 0.0
     if min_score is None:
-        min_score = {0: 0.74, 1: 0.74, 3: 0.66}[class_id]
+        min_score = {0: 0.74, 1: 0.74, 3: 0.74}[class_id]
     if min_margin is None:
         min_margin = {0: 0.07, 1: 0.07, 3: 0.055}[class_id]
     result = {'accepted': False, 'candidate': name, 'score': score,
               'runner_up_score': runner_up, 'margin': round(score - runner_up, 4),
               'sharpness': round(blur, 1), 'color_share': round(color, 3)}
+    if name == '环岛行驶标志':
+        result['reason'] = '环岛牌型不能只凭整体图案相似度判定'
+        return result
     if name == '减速让行' and score >= 0.60 and score - runner_up >= 0.10:
         center_words = [line for line in _ocr_lines(crop)
                         if line['text'] == '让' and line['score'] >= 0.95
@@ -370,6 +390,8 @@ def summarize_small_signs(report):
             if sign.get('number'):
                 number = sign['number']
                 suffix = f"牌面数字 {number['value']} {number['unit']}（OCR {number['ocr_score']:.2f}）。"
+            if sign.get('method'):
+                suffix += f" 图像证据：{sign['method']}。"
             source = '颜色/形状候选' if sign.get('detector_source') == 'color_shape' else 'YOLO'
             lines.append(f"- #{sign['sign_id']}（{source}） **{sign['name']}**：{sign['meaning']} {suffix} "
                          f"[图解来源]({sign['source_page']})。{sign['scope_note']}。")

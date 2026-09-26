@@ -52,6 +52,30 @@ class SmallSignReaderTests(unittest.TestCase):
         self.assertFalse(result['accepted'])
         self.assertEqual(result['margin'], 0)
 
+    def test_pedestrian_rule_requires_reviewed_catalog_entry(self):
+        crossing = {'id': 'point-s-017', 'name': '人行横道标志',
+                    'dataset_class_id': 3, 'meaning_summary': '指明该处有人行横道。',
+                    'source_image_url': 'https://example.test/crossing'}
+        refs = self.refs + [(crossing, _features(np.asarray(self.right)))]
+        with patch('traffic_agent.small_sign_reader.pedestrian_evidence',
+                   return_value={'accepted': True, 'pattern_similarity': 0.8}) as check:
+            result = match_crop(self.right, 3, refs)
+        self.assertTrue(check.called)
+        self.assertTrue(result['accepted'])
+        self.assertEqual(result['catalog_id'], 'point-s-017')
+        self.assertEqual(result['meaning'], crossing['meaning_summary'])
+        self.assertEqual(result['pattern_similarity'], 0.8)
+
+    def test_roundabout_is_not_claimed_from_generic_similarity(self):
+        roundabout = {'id': 'point-s-010', 'name': '环岛行驶标志',
+                      'dataset_class_id': 3, 'meaning_summary': '车辆按图示方向环行。',
+                      'source_image_url': 'https://example.test/roundabout'}
+        refs = [(roundabout, _features(np.asarray(self.right))), self.refs[1]]
+        result = match_crop(self.right, 3, refs)
+        self.assertFalse(result['accepted'])
+        self.assertEqual(result['candidate'], '环岛行驶标志')
+        self.assertIn('整体图案相似度', result['reason'])
+
     def test_number_requires_ocr_and_matching_ring(self):
         image = np.full((128, 128, 3), 255, np.uint8)
         cv2.circle(image, (64, 64), 53, (220, 20, 20), 14)
