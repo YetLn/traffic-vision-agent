@@ -1,0 +1,135 @@
+{
+  "scope": "development_coarse_box_recall_only",
+  "selection": {
+    "small_source_images": 123,
+    "direction_source_images": 35,
+    "unique_source_images": 138,
+    "seed": 20260926,
+    "per_class": 20,
+    "controls": 10
+  },
+  "metric": "Each eligible gold box has a same-class predicted box with IoU >= 0.5; not one-to-one. Fine-grained accuracy and false-positive rate are unknown.",
+  "timing_note": "Mean inference times are run-specific and not used for checkpoint selection.",
+  "checkpoints": {
+    "current_v12": {
+      "weights_sha256": "ee309e2b6f9a558343ef059871c708a2e5091c4e15b385764d4f95d63d163f85",
+      "counts": {
+        "small_day_0": {
+          "gt": 22,
+          "hit": 8
+        },
+        "small_day_3": {
+          "gt": 24,
+          "hit": 6
+        },
+        "small_day_1": {
+          "gt": 29,
+          "hit": 13
+        },
+        "small_night_0": {
+          "gt": 5,
+          "hit": 2
+        },
+        "small_night_1": {
+          "gt": 28,
+          "hit": 25
+        },
+        "small_night_3": {
+          "gt": 34,
+          "hit": 24
+        },
+        "direction": {
+          "gt": 35,
+          "hit": 8
+        }
+      },
+      "detected_boxes_by_class": {
+        "0": 27,
+        "2": 82,
+        "3": 83,
+        "1": 81
+      },
+      "mean_inference_ms": 782.9
+    },
+    "v13_day_night": {
+      "weights_sha256": "9f1bb0f2f55f2273b4819da538d0c46fa0f5e442b809368b6c0b32286397b6b4",
+      "counts": {
+        "small_day_0": {
+          "gt": 22,
+          "hit": 12
+        },
+        "small_day_3": {
+          "gt": 24,
+          "hit": 6
+        },
+        "small_day_1": {
+          "gt": 29,
+          "hit": 14
+        },
+        "small_night_0": {
+          "gt": 5,
+          "hit": 3
+        },
+        "small_night_1": {
+          "gt": 28,
+          "hit": 28
+        },
+        "small_night_3": {
+          "gt": 34,
+          "hit": 18
+        },
+        "direction": {
+          "gt": 35,
+          "hit": 11
+        }
+      },
+      "detected_boxes_by_class": {
+        "1": 86,
+        "0": 27,
+        "2": 90,
+        "3": 58
+      },
+      "mean_inference_ms": 1072.3
+    },
+    "yolo11_day_night": {
+      "weights_sha256": "0b0bcf5bea6add7b30ee3e79514673e3486ac254afc2d553baf5f391a332d74a",
+      "counts": {
+        "small_day_0": {
+          "gt": 22,
+          "hit": 5
+        },
+        "small_day_3": {
+          "gt": 24,
+          "hit": 4
+        },
+        "small_day_1": {
+          "gt": 29,
+          "hit": 18
+        },
+        "small_night_0": {
+          "gt": 5,
+          "hit": 2
+        },
+        "small_night_1": {
+          "gt": 28,
+          "hit": 26
+        },
+        "small_night_3": {
+          "gt": 34,
+          "hit": 24
+        },
+        "direction": {
+          "gt": 35,
+          "hit": 17
+        }
+      },
+      "detected_boxes_by_class": {
+        "2": 83,
+        "0": 18,
+        "1": 97,
+        "3": 66
+      },
+      "mean_inference_ms": 1011.2
+    }
+  }
+}

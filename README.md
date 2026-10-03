@@ -173,6 +173,8 @@ OCR 文字会进一步分级，供界面与模型区分“对驾驶员的要求�
 
 当前支持部分独立分行布局和一箭头对应多个地名；第三轮加入保守的透视校正、OCR 框边缘重读与带 YOLO 证据的整牌边界恢复。35 张开发性质道路原图的 31 条可判定关系中，输出 9 条且均与当前近似标注一致，覆盖 29.0%；26 块负牌没有错误方向。但新增 10 张额外验证图的 5 条关系全部漏掉，**不能声称通过冻结验收**。新增 16 张原图可视标注（含 6 张夜间）和排除隐藏增强图的 v4 候选集已经保存；标注未经独立人审，100 个不同实体与 30/70 冻结划分尚未完成。详见 [第三轮改进与结果](docs/direction_upgrade_v3.md)；[第二轮](docs/direction_upgrade_v2.md)与[第一轮失败记录](docs/direction_progress_20260922.md)保留追溯。
 
+后续在相同原图上对照了三份同期训练权重：其他权重虽能多检出部分方向牌，但完整方向关系由当前的 9/31 降至 7/31 或 4/31，因此暂不更换默认模型。评测方法、其他类别的取舍与下一步优先级见[权重对照报告](docs/detector_checkpoint_review_20261004.md)。
+
 ```powershell
 .\.venv\Scripts\python.exe scripts\read_directions.py --image .\your-road-image.jpg --out outputs\direction_demo
 ```

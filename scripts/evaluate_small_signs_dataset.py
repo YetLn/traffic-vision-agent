@@ -18,6 +18,7 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from traffic_agent.detector import TrafficSignDetector
+from traffic_agent.config import WEIGHTS
 from traffic_agent.small_sign_reader import read_small_signs
 
 
@@ -232,6 +233,7 @@ def main():
     parser.add_argument('--per-class', type=int, default=20)
     parser.add_argument('--controls', type=int, default=10)
     parser.add_argument('--confidence', type=float, default=0.25)
+    parser.add_argument('--weights', type=Path, default=WEIGHTS)
     parser.add_argument('--no-color-recovery', action='store_true')
     parser.add_argument('--seed', type=int, default=20260926)
     parser.add_argument('--day-root', type=Path, default=DAY)
@@ -247,12 +249,14 @@ def main():
     print('selected', len(selected), dict(Counter(r['stratum'] for r in selected)), flush=True)
     if args.dry_run:
         return
-    detector = TrafficSignDetector()
+    detector = TrafficSignDetector(weight_path=args.weights)
     results = evaluate(selected, detector, args.confidence,
                        color_recovery=not args.no_color_recovery)
     summary = summarize(records, selected, results)
     payload = {'selection': {'per_class': args.per_class, 'controls': args.controls,
                              'seed': args.seed, 'confidence': args.confidence,
+                             'weights': args.weights.name,
+                             'weights_sha256': hashlib.sha256(args.weights.read_bytes()).hexdigest(),
                              'color_recovery': not args.no_color_recovery,
                              'source_splits': {'day': 'val', 'night': 'val originals only'}},
                'summary': summary, 'samples': results,

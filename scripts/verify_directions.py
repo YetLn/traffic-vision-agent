@@ -17,6 +17,8 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument('--gold', type=Path, required=True)
     p.add_argument('--out', type=Path, required=True)
+    p.add_argument('--weights', type=Path, default=WEIGHTS,
+                   help='Checkpoint to compare; defaults to the application weight')
     args = p.parse_args()
     root=Path(__file__).resolve().parents[1]
     modules=('traffic_agent/direction_reader.py','traffic_agent/direction_geometry.py',
@@ -33,7 +35,7 @@ def main():
     for case in cases:
         with Image.open(case['source_image']) as image:
             image.verify()
-    detector = TrafficSignDetector()
+    detector = TrafficSignDetector(weight_path=args.weights)
     args.out.mkdir(parents=True, exist_ok=True)
     results = {}
     for case in cases:
@@ -49,7 +51,7 @@ def main():
     if any(hashlib.sha256((root/name).read_bytes()).hexdigest()!=sha for name,sha in implementation_hashes.items()):
         raise RuntimeError('Implementation changed during verification; rerun before publishing metrics')
     payload = {'run_type': 'development_original_image_yolo',
-               'weights_sha256': hashlib.sha256(WEIGHTS.read_bytes()).hexdigest(),
+               'weights_sha256': hashlib.sha256(args.weights.read_bytes()).hexdigest(),
                'implementation_sha256': implementation_hashes,
                'predictions': results}
     (args.out/'predictions.json').write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding='utf-8')
