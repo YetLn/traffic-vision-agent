@@ -65,11 +65,36 @@ def _shape_bank():
                                                  flags=cv2.INTER_NEAREST)
                         templates.append(_normal(_tight(rotated)))
                         labels.append(direction)
+    straight_count = len(templates)
+    # A slanted shaft with a nearly upright head occurs on perspective and
+    # stylized route signs. Rotating an entire straight arrow cannot represent
+    # it: the head rotates too. Keep only two narrow synthetic silhouettes and
+    # retain the same high IoU/margin gates as the straight-arrow bank.
+    for head in (0.35, 0.40):
+        shaft, notch, shoulder = 0.40, 0.16, 0.18
+        left, right = (1 - shaft) / 2, (1 + shaft) / 2
+        for shift in (-0.45, 0.45):
+            points = [(0.5, 0), (1, head - shoulder), (1, head),
+                      (right, head - notch), (right + shift, 1),
+                      (left + shift, 1), (left, head - notch),
+                      (0, head), (0, head - shoulder)]
+            base = np.zeros((size * 2, size * 2), np.uint8)
+            vertices = np.rint(np.array(points) * (size - 1) + size / 2).astype(np.int32)
+            cv2.fillPoly(base, [vertices], 1)
+            for turn, direction in enumerate(DIRECTIONS):
+                oriented = np.rot90(base, turn).copy()
+                for angle in (-5, 0, 5):
+                    matrix = cv2.getRotationMatrix2D((size, size), angle, 1)
+                    rotated = cv2.warpAffine(oriented, matrix, base.shape[::-1],
+                                             flags=cv2.INTER_NEAREST)
+                    templates.append(_normal(_tight(rotated)))
+                    labels.append(direction)
     array = np.stack(templates).reshape(len(templates), -1)
-    return np.packbits(array, axis=1), array.sum(axis=1), np.array(labels)
+    return np.packbits(array, axis=1), array.sum(axis=1), np.array(labels), straight_count
 
 
-def classify_arrow_mask(mask, min_iou=0.82, min_margin=0.16):
+def classify_arrow_mask(mask, min_iou=0.82, min_margin=0.16,
+                        allow_sheared=False):
     """Classify one binary component; return ``direction=None`` on abstention.
 
     Input must describe one whole foreground object, not an arbitrary window
@@ -98,7 +123,10 @@ def classify_arrow_mask(mask, min_iou=0.82, min_margin=0.16):
     hole_area = sum(cv2.contourArea(c) for c, h in zip(contours, hierarchy[0]) if h[3] >= 0)
     if hole_area > 0.06 * component.sum():
         return {**empty, "reason": "hollow_shape"}
-    templates, areas, labels = _shape_bank()
+    templates, areas, labels, straight_count = _shape_bank()
+    if not allow_sheared:
+        templates, areas, labels = (templates[:straight_count],
+                                    areas[:straight_count], labels[:straight_count])
     normalized = _normal(component)
     packed = np.packbits(normalized.ravel())
     intersection = _BIT_COUNTS[np.bitwise_and(templates, packed)].sum(axis=1)
@@ -162,7 +190,8 @@ def _text_coverage(component, bbox, boxes):
 
 
 def detect_direction_arrows(image, text_boxes=(), min_iou=0.82, min_margin=0.16,
-                            min_side=16, min_area=120, max_text_overlap=0.25):
+                            min_side=16, min_area=120, max_text_overlap=0.25,
+                            allow_sheared=False):
     """Find isolated bright arrows; output evidence in input-image coordinates.
 
     Several luminance thresholds accommodate dark/blue-tinted foreground. OCR
@@ -214,7 +243,8 @@ def detect_direction_arrows(image, text_boxes=(), min_iou=0.82, min_margin=0.16,
                                 "foreground_text_fraction": round(text_fraction, 4),
                                 "bbox_text_fraction": round(box_fraction, 4)})
                     continue
-                result = classify_arrow_mask(component, min_iou, min_margin)
+                result = classify_arrow_mask(component, min_iou, min_margin,
+                                             allow_sheared=allow_sheared)
                 if result["direction"] is None:
                     rejected[result["reason"]] += 1
                     continue

@@ -145,7 +145,8 @@ def _map_evidence(item, inverse, left, top):
     return mapped
 
 
-def read_directions(image, detector, conf=0.25, panel_recovery=True):
+def read_directions(image, detector, conf=0.25, panel_recovery=True,
+                    experimental_shear=False):
     """Return JSON evidence in EXIF-normalized original-image coordinates."""
     if image is None:
         raise ValueError('请先上传道路原图。')
@@ -197,7 +198,8 @@ def read_directions(image, detector, conf=0.25, panel_recovery=True):
             refinement=refine_ocr_lines(analysis,lines)
             lines=refinement['lines']
             record['ocr_refinement_diagnostics']={**refinement['diagnostics'],**frame}
-            geometry = detect_direction_arrows(analysis, lines)
+            geometry = detect_direction_arrows(analysis, lines,
+                                               allow_sheared=experimental_shear)
             arrows = geometry['arrows']
             relations, reasons = associate_rows(lines, arrows, analysis.size)
             association={'method':'unique_horizontal_row'}

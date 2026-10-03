@@ -19,6 +19,8 @@ def main():
     p.add_argument('--out', type=Path, required=True)
     p.add_argument('--weights', type=Path, default=WEIGHTS,
                    help='Checkpoint to compare; defaults to the application weight')
+    p.add_argument('--experimental-shear', action='store_true',
+                   help='Enable undeployed slanted-arrow template experiment')
     args = p.parse_args()
     root=Path(__file__).resolve().parents[1]
     modules=('traffic_agent/direction_reader.py','traffic_agent/direction_geometry.py',
@@ -42,7 +44,8 @@ def main():
         # Only source_image is read. No labels, expected relations or gold boxes
         # are passed into the inference path.
         with Image.open(case['source_image']) as image:
-            report = read_directions(image, detector)
+            report = read_directions(image, detector,
+                                     experimental_shear=args.experimental_shear)
             draw_evidence(image, report, args.out/(case['case_id']+'.jpg'))
         report['source_sha256'] = hashlib.sha256(Path(case['source_image']).read_bytes()).hexdigest()
         results[case['case_id']] = report
@@ -51,6 +54,7 @@ def main():
     if any(hashlib.sha256((root/name).read_bytes()).hexdigest()!=sha for name,sha in implementation_hashes.items()):
         raise RuntimeError('Implementation changed during verification; rerun before publishing metrics')
     payload = {'run_type': 'development_original_image_yolo',
+               'experimental_shear': args.experimental_shear,
                'weights_sha256': hashlib.sha256(args.weights.read_bytes()).hexdigest(),
                'implementation_sha256': implementation_hashes,
                'predictions': results}

@@ -46,7 +46,7 @@ $env:NO_PROXY = '127.0.0.1,localhost'; .\.venv\Scripts\python.exe app.py
 .\.venv\Scripts\python.exe scripts\verify_knowledge.py        # 知识库检索框架（离线）
 ```
 
-命令行产生 `outputs/result.json` 与随机命名的标注图片。单元测试使用受控检测器及模拟 LLM，不消耗 API；`verify_page.py` 等真实图像验收脚本需要本机原始样例，`--live-llm` 还会产生 API 用量。历史验证记录见 `docs/validation.md`，公开的方向评测摘要见 `reports/direction-v3-summary.json`。
+命令行产生 `outputs/result.json` 与随机命名的标注图片。单元测试使用受控检测器及模拟 LLM，不消耗 API；`verify_page.py` 等真实图像验收脚本需要本机原始样例，`--live-llm` 还会产生 API 用量。历史验证记录见 `docs/validation.md`，公开的方向评测摘要见 `reports/direction-v3-summary.json`。2026-10-04 的粗类检测微调与倾斜箭头实验见 `docs/detector_arrow_experiment_20261004.md`；两项候选均未替换默认模型或解析规则。
 
 ## 模型选择与类别
 
